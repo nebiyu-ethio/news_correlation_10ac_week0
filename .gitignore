@@ -1,2 +1,5 @@
 # Ignore Virtual Environments
 .env/
+
+# ignore everything in the following folders
+data/**
