@@ -1,21 +1,49 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-# # Load data
-def load_news_data(filepath):
-    
-    data =  pd.read_csv(filepath)
-    
-    
-    if 'published_at' in data.columns:
-        data['published_at'] = pd.to_datetime(data['published_at'], format='%Y-%m-%d %H:%M:%S')
 
-    return data
+class NewsDataLoader:
+    """
+    NewsDataLoader class for loading rating, domain location, and traffic data.
+    """
 
-def load_domains_location_data(filepath):
-    return pd.read_csv(filepath)
-    
-    
-def load_traffic_data_data(filepath):
-   return pd.read_csv(filepath)
+    def __init__(self, path):
+        """
+        Initialize a NewsDataLoader instance.
+
+        Parameters:
+            path (str): The path to the directory containing the csv files.
+        """
+        self.path = path
+        self.data = None
+        self.domain = None
+        self.traffic = None
+
+    def load_data(self):
+        """
+        Load rating data from the csv file.
+
+        Returns:
+            pandas.DataFrame: Rating data.
+        """
+        df = pd.read_csv(f"{self.path}/rating.csv")
+        return df
+
+    def load_domain_location(self):
+        """
+        Load domain location data from the csv file.
+
+        Returns:
+            pandas.DataFrame: Domain location data.
+        """
+        df = pd.read_csv(f"{self.path}/domains_location.csv")
+        return df
+
+    def load_traffic(self):
+        """
+        Load traffic data from the csv file.
+
+        Returns:
+            pandas.DataFrame: Traffic data.
+        """
+        df = pd.read_csv(f"{self.path}/traffic.csv")
+        return df
